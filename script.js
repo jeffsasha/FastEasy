@@ -1,7 +1,7 @@
 const FORM_ENDPOINT = "";
 const OWNER_EMAIL = "minnie.fasteasy@gmail.com";
 
-const revealItems = document.querySelectorAll(".reveal, .service-card, .news-card, .program-list div, .license-grid div");
+const revealItems = document.querySelectorAll(".reveal, .service-card, .news-card, .program-list div, .license-strip div");
 
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(

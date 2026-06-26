@@ -341,7 +341,6 @@ button {
   line-height: 1.12;
 }
 
-.profile-layout,
 .split,
 .contact-panel,
 .application-shell {
@@ -349,40 +348,112 @@ button {
   margin: 0 auto;
 }
 
-.profile-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-  gap: 28px;
-  align-items: stretch;
+.section-intro {
+  max-width: 760px;
+  margin: 14px auto 0;
+  color: #33455e;
 }
 
-.profile-card {
+.section-intro.en {
+  margin-top: 6px;
+}
+
+.team-card {
   position: relative;
+  display: grid;
+  width: min(1060px, 100%);
+  margin: 0 auto;
   overflow: hidden;
-  padding: clamp(28px, 4vw, 48px);
   border: 1px solid rgba(217, 226, 234, 0.9);
-  border-left: 5px solid var(--gold);
   border-radius: 12px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 251, 253, 0.88)),
-    var(--soft);
+  background: #fff;
   box-shadow: var(--shadow-soft);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
 }
 
-.profile-card::after {
+.team-card::after {
   position: absolute;
-  right: -74px;
-  bottom: -74px;
-  width: 190px;
-  height: 190px;
-  border: 1px solid rgba(213, 166, 74, 0.35);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  content: "";
+  background: linear-gradient(90deg, var(--gold), var(--aqua), var(--emerald));
+}
+
+.team-card:hover {
+  border-color: rgba(213, 166, 74, 0.45);
+  box-shadow: var(--shadow);
+  transform: translateY(-5px);
+}
+
+.team-member {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+  min-width: 0;
+  padding: 30px;
+}
+
+.team-member + .team-member {
+  border-top: 1px solid var(--line);
+}
+
+.team-photo {
+  width: 104px;
+  height: 104px;
+  overflow: hidden;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #eef3f8, #dfe8f0);
+  box-shadow: 0 12px 28px rgba(11, 28, 50, 0.16);
+}
+
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 52% center;
+}
+
+.transparent-photo {
+  background:
+    linear-gradient(145deg, rgba(142, 215, 209, 0.28), transparent 55%),
+    #edf3f8;
+}
+
+.transparent-photo img {
+  object-fit: contain;
+  object-position: center bottom;
+  transform: scale(1.15);
+  transform-origin: bottom center;
+}
+
+.empty-photo {
+  display: grid;
+  place-items: center;
+}
+
+.empty-photo::before {
+  width: 38px;
+  height: 38px;
+  border: 2px solid rgba(100, 114, 135, 0.26);
   border-radius: 50%;
   content: "";
 }
 
-.profile-card h3 {
-  margin: 8px 0 16px;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+.team-details {
+  min-width: 0;
+}
+
+.team-details h3 {
+  margin: 5px 0 10px;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  line-height: 1.15;
 }
 
 .role {
@@ -391,13 +462,49 @@ button {
   font-weight: 900;
 }
 
-.license-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+.team-details p {
+  margin: 0 0 10px;
 }
 
-.license-grid div,
+.nmls-line {
+  color: var(--navy);
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.team-phone {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  margin-top: 6px;
+  padding: 9px 13px;
+  border: 1px solid rgba(16, 47, 85, 0.14);
+  border-radius: 9px;
+  color: var(--navy);
+  background: var(--soft);
+  font-weight: 900;
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.team-phone:hover {
+  color: #fff;
+  background: var(--emerald);
+  transform: translateY(-2px);
+}
+
+.license-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  width: min(1060px, 100%);
+  margin: 22px auto 0;
+}
+
+.license-strip div,
 .service-card,
 .news-card,
 .program-list div {
@@ -407,16 +514,16 @@ button {
     border-color 220ms ease;
 }
 
-.license-grid div {
-  min-height: 136px;
-  padding: 22px;
+.license-strip div {
+  min-height: 112px;
+  padding: 19px;
   border: 1px solid rgba(217, 226, 234, 0.95);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 14px 34px rgba(20, 35, 61, 0.08);
 }
 
-.license-grid div:hover,
+.license-strip div:hover,
 .service-card:hover,
 .news-card:hover,
 .program-list div:hover {
@@ -425,14 +532,14 @@ button {
   transform: translateY(-5px);
 }
 
-.license-grid span {
+.license-strip span {
   display: block;
   color: var(--muted);
   font-size: 0.85rem;
   font-weight: 900;
 }
 
-.license-grid strong {
+.license-strip strong {
   display: block;
   margin-top: 12px;
   overflow-wrap: anywhere;
@@ -524,7 +631,7 @@ button {
 
 .service-card p,
 .news-card p,
-.profile-card p,
+.team-details p,
 .split p,
 .contact-panel p,
 .application-copy p {
@@ -772,7 +879,7 @@ address span {
 .service-card,
 .news-card,
 .program-list div,
-.license-grid div {
+.license-strip div {
   opacity: 0;
   transform: translateY(18px);
 }
@@ -781,7 +888,7 @@ address span {
 .service-card.is-visible,
 .news-card.is-visible,
 .program-list div.is-visible,
-.license-grid div.is-visible {
+.license-strip div.is-visible {
   opacity: 1;
   transform: translateY(0);
   transition:
@@ -853,11 +960,23 @@ address span {
     min-height: 720px;
   }
 
-  .profile-layout,
   .split,
   .contact-panel,
   .application-shell {
     grid-template-columns: 1fr;
+  }
+
+  .team-card {
+    grid-template-columns: 1fr;
+  }
+
+  .team-member + .team-member {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .license-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .application-copy {
@@ -911,18 +1030,29 @@ address span {
     width: 100%;
   }
 
-  .license-grid,
+  .license-strip,
   .service-grid,
   .news-grid,
   .form-grid {
     grid-template-columns: 1fr;
   }
 
+  .team-member {
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: 16px;
+    padding: 22px;
+  }
+
+  .team-photo {
+    width: 82px;
+    height: 82px;
+  }
+
   .hero-stats {
     display: none;
   }
 
-  .license-grid div {
+  .license-strip div {
     min-height: 112px;
   }
 
